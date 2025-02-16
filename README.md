@@ -35,18 +35,18 @@
 ## b. Describir cada uno de los endpoints. Realiza una explicación sencilla de cada endpoint.
 
 ### /users
-POST → /login → Autenticar un usuario y generar un token JWT.
-POST → /register → Registra un nuevo usuario si no esta en la base de datos
-GET → /getInfo → Obtiene la información del usuario y tareas del usuario
-PUT → /asignarTarea/{idTarea} → Retirar dinero 
-DELETE → /deleteUser/{username} → Eliminar usuario
+- POST → /login → Autenticar un usuario y generar un token JWT.
+- POST → /register → Registra un nuevo usuario si no esta en la base de datos
+- GET → /getInfo → Obtiene la información del usuario y tareas del usuario
+- PUT → /asignarTarea/{idTarea} → Retirar dinero 
+- DELETE → /deleteUser/{username} → Eliminar usuario
 
 ## /tareas
-GET → /getInfoTarea/{idTarea} → Obtiene la informacion de una tarea
-POST → /crearTarea → Crea una tarea
-PUT → /modTarea/{idTarea} → Modifica el titulo o el texto de una tarea
-PUT → /completarTarea/{idTarea} → Completa como marcada una tarea
-DELETE → /delTarea/{idTarea} → Elimina una tarea
+- GET → /getInfoTarea/{idTarea} → Obtiene la informacion de una tarea
+- POST → /crearTarea → Crea una tarea
+- PUT → /modTarea/{idTarea} → Modifica el titulo o el texto de una tarea
+- PUT → /completarTarea/{idTarea} → Completa como marcada una tarea
+- DELETE → /delTarea/{idTarea} → Elimina una tarea
 
 ## c. Describe la lógica de negocio que va a contener tu aplicación.
 
