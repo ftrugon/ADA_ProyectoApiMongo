@@ -1,4 +1,4 @@
-package com.es.aplicacion.domain
+package com.tareapi.domain
 
 data class Provincia(
     val CCOM: String,

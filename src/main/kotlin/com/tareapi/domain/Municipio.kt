@@ -1,4 +1,4 @@
-package com.es.aplicacion.domain
+package com.tareapi.domain
 
 data class Municipio(
     val CMUM: String,

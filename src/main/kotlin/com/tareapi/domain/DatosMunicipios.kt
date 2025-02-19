@@ -1,4 +1,6 @@
-package com.es.aplicacion.domain
+package com.tareapi.domain
+
+import com.tareapi.domain.Municipio
 
 data class DatosMunicipios(
     val update_date:String,

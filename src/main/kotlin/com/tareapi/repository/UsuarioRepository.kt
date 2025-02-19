@@ -7,4 +7,5 @@ import java.util.*
 
 @Repository
 interface UsuarioRepository : MongoRepository<Usuario, String> {
+    fun findByUsername(username: String): Optional<Usuario>
 }
