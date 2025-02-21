@@ -1,9 +1,15 @@
 package com.tareapi.controller
 
+import com.tareapi.dto.RegistrarUsuarioDTO
+import com.tareapi.dto.UsuarioDTO
+import com.tareapi.dto.UsuarioLoginDTO
+import com.tareapi.error.exception.AlreadyExistException
 import com.tareapi.error.exception.UnauthorizedException
 import com.tareapi.service.TokenService
 import com.tareapi.model.Usuario
 import com.tareapi.service.UsuarioService
+import jakarta.servlet.http.HttpServletRequest
+import org.apache.coyote.BadRequestException
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -25,19 +31,23 @@ class UsuarioController {
     @Autowired
     private lateinit var usuarioService: UsuarioService
 
-    @GetMapping("/hola")
-    fun findAll():String {
-        return "hola"
+
+    @PostMapping("/register")
+    fun insert(
+        httpRequest: HttpServletRequest,
+        @RequestBody registrarUsuario: RegistrarUsuarioDTO,
+    ): ResponseEntity<UsuarioDTO?>?{
+
+        return ResponseEntity(usuarioService.insertUser(registrarUsuario),HttpStatus.CREATED)
+
     }
 
-
-
     @PostMapping("/login")
-    fun login(@RequestBody usuario: Usuario) : ResponseEntity<Any>? {
+    fun login(@RequestBody usuarioLoginDTO: UsuarioLoginDTO) : ResponseEntity<Any> {
 
         val authentication: Authentication
         try {
-            authentication = authenticationManager.authenticate(UsernamePasswordAuthenticationToken(usuario.username, usuario.password))
+            authentication = authenticationManager.authenticate(UsernamePasswordAuthenticationToken(usuarioLoginDTO.username, usuarioLoginDTO.password))
         } catch (e: AuthenticationException) {
             throw UnauthorizedException("Credenciales incorrectas")
         }
@@ -46,6 +56,6 @@ class UsuarioController {
         // PASAMOS A GENERAR EL TOKEN
         val token = tokenService.generarToken(authentication)
 
-        return ResponseEntity(mapOf("token" to token), HttpStatus.CREATED)
+        return ResponseEntity(mapOf("token" to token), HttpStatus.OK)
     }
 }

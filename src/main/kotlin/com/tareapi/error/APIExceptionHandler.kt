@@ -3,6 +3,7 @@ package com.tareapi.error
 import com.tareapi.error.exception.AlreadyExistException
 import com.tareapi.error.exception.UnauthorizedException
 import jakarta.servlet.http.HttpServletRequest
+import org.apache.coyote.BadRequestException
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
@@ -17,31 +18,27 @@ class APIExceptionHandler {
     @ResponseStatus(HttpStatus.CONFLICT)
     @ResponseBody
     fun alreadyExistException(request: HttpServletRequest, e: Exception) : ErrorRespuesta {
-        e.printStackTrace()
         return ErrorRespuesta(e.message!!, request.requestURI)
     }
 
-    @ExceptionHandler(IllegalArgumentException::class)
+    @ExceptionHandler(IllegalArgumentException::class,BadRequestException::class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
     fun handleBadArguments(request: HttpServletRequest, e: Exception) : ErrorRespuesta {
-        e.printStackTrace()
         return ErrorRespuesta(e.message!!, request.requestURI)
     }
 
-    @ExceptionHandler(AuthenticationException::class, UnauthorizedException::class) // Las "clases" (excepciones) que se quieren controlar
+    @ExceptionHandler(AuthenticationException::class, UnauthorizedException::class)
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     @ResponseBody
     fun handleAuthentication(request: HttpServletRequest, e: Exception) : ErrorRespuesta {
-        e.printStackTrace()
         return ErrorRespuesta(e.message!!, request.requestURI)
     }
 
-    @ExceptionHandler(Exception::class, NullPointerException::class) // Las "clases" (excepciones) que se quieren controlar
+    @ExceptionHandler(Exception::class, NullPointerException::class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
     fun handleGeneric(request: HttpServletRequest, e: Exception) : ErrorRespuesta {
-        e.printStackTrace()
         return ErrorRespuesta(e.message!!, request.requestURI)
     }
 }

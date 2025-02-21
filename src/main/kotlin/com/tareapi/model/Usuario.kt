@@ -8,13 +8,13 @@ import org.springframework.data.mongodb.core.mapping.Document
 data class Usuario(
     @BsonId
     val _id : String?,
+    @Indexed(unique = true)
     val username: String,
-    val password: String,
+    var password: String,
+    @Indexed(unique = true)
     val email: String,
     val direccion: Direccion,
-    val roles: String = "USER"
-
+    val roles: String? = "USER"
 ) {
 
 }
-
