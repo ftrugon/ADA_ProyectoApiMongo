@@ -50,6 +50,23 @@
 
 ## c. Describe la lógica de negocio que va a contener tu aplicación.
 
+- ## Usuarios
+La contraseña se hashea antes de entrar a la base de datos
+No se puede crear un usuario con un username existente
+La contraseña no puede ser una cadena vacía, el nombre tampoco
+El usuario puede ser eliminado por sí mismo o por un administrador
+
+- ## Tareas
+* Una tarea solo puede ser asignada a un usuario
+* Una tarea no puede tener campos vacios
+* Si una tarea ya ha sido asignada no se puede reasignar
+* Una tarea solo puede ser borrada por el propio usuario o admin
+* Una tarea solo puede ser acabada por el usuario que se la asigno
+
+- ## Direccion
+* La direccion debe de ser correcta (provincia y municipio) 
+
+
 
 ## d. Describe las excepciones que vas a generar y los códigos de estado que vas a poner en todos los casos.
 - 400 → Bad request → La información de la request no son válidos
