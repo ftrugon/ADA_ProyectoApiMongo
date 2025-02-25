@@ -73,7 +73,6 @@ class UsuarioService: UserDetailsService {
         }
 
         // direccion
-
         comprobarDireccion(registrarUsuarioDTO.direccion)
 
 

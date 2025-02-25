@@ -1,6 +1,7 @@
 package com.tareapi.error
 
 import com.tareapi.error.exception.AlreadyExistException
+import com.tareapi.error.exception.NotFoundException
 import com.tareapi.error.exception.UnauthorizedException
 import jakarta.servlet.http.HttpServletRequest
 import org.apache.coyote.BadRequestException
@@ -32,6 +33,13 @@ class APIExceptionHandler {
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     @ResponseBody
     fun handleAuthentication(request: HttpServletRequest, e: Exception) : ErrorRespuesta {
+        return ErrorRespuesta(e.message!!, request.requestURI)
+    }
+
+    @ExceptionHandler(NotFoundException::class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseBody
+    fun notFound(request: HttpServletRequest, e: Exception) : ErrorRespuesta {
         return ErrorRespuesta(e.message!!, request.requestURI)
     }
 

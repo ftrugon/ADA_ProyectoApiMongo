@@ -27,7 +27,7 @@
 - texto: String
 - estado: Boolean
 - fecha_inicio: Date
-- usuario: Usuario
+- usuario: String?
 
 
 # 2. En el README anteriormente construido deberás incluir lo siguiente (aparte de lo ya descrito)

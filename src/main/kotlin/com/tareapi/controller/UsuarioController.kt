@@ -43,7 +43,9 @@ class UsuarioController {
     }
 
     @PostMapping("/login")
-    fun login(@RequestBody usuarioLoginDTO: UsuarioLoginDTO) : ResponseEntity<Any> {
+    fun login(
+        @RequestBody usuarioLoginDTO: UsuarioLoginDTO
+    ) : ResponseEntity<Any> {
 
         val authentication: Authentication
         try {
@@ -58,4 +60,6 @@ class UsuarioController {
 
         return ResponseEntity(mapOf("token" to token), HttpStatus.OK)
     }
+
+
 }
