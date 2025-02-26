@@ -13,6 +13,7 @@ class Tarea (
     var texto: String,
     var estado: Boolean,
     var fecha_inicio: Date,
+    var fecha_final: Date?,
     var usuario: String?
 ){
 }

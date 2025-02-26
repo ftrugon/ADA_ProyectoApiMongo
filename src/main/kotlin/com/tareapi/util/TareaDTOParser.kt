@@ -8,7 +8,7 @@ import java.util.Date
 object TareaDTOParser {
 
     fun InsertarTareaDTOToTarea(tareaDTO: InsertarTareaDTO): Tarea {
-        return Tarea(null,tareaDTO.titulo,tareaDTO.texto,false,Date(),"")
+        return Tarea(null,tareaDTO.titulo,tareaDTO.texto,false,Date(),null,"")
     }
 
 

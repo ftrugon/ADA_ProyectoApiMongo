@@ -5,6 +5,7 @@ import com.tareapi.dto.TareaDTO
 import com.tareapi.error.exception.NotFoundException
 import com.tareapi.model.Tarea
 import com.tareapi.repository.TareaRepository
+import com.tareapi.repository.UsuarioRepository
 import com.tareapi.util.TareaDTOParser
 import org.apache.coyote.BadRequestException
 import org.springframework.beans.factory.annotation.Autowired
@@ -17,6 +18,8 @@ class TareaService {
     @Autowired
     private lateinit var tareaRepository: TareaRepository
 
+    @Autowired
+    private lateinit var usuarioRepository: UsuarioRepository
 
     fun insertarTarea(tareaDTO: InsertarTareaDTO):TareaDTO {
 
@@ -34,22 +37,14 @@ class TareaService {
         return TareaDTOParser.TareaToTareaDTO(tarea)
     }
 
-    fun darseDeAltaATarea(username: String, tareaID: String): Tarea {
-
+    fun getByID(tareaID: String): Tarea {
         val optionalTarea = tareaRepository.findTareaBy_id(tareaID)
 
         if (!optionalTarea.isPresent ) {
-            throw NotFoundException("El usuario no puede estar vacio")
+            throw NotFoundException("La tarea que se quiere completar no existe")
         }
 
-        val tarea = optionalTarea.get()
-
-        tarea.usuario = username
-        tarea.fecha_inicio = Date()
-
-        tareaRepository.save(tarea)
-        return tarea
-
+        return optionalTarea.get()
     }
 
     fun getAll(): List<Tarea> {
@@ -60,6 +55,46 @@ class TareaService {
         return tareaRepository.findByUsuario(username)
     }
 
+    fun darseDeAltaATarea(username: String, tareaID: String): Tarea {
 
+        val optionalUsuario = usuarioRepository.findByUsername(username)
+
+        if (!optionalUsuario.isPresent ) {
+            throw NotFoundException("El usuario para dar de alta a la tarea no existe")
+        }
+
+        val tarea = getByID(tareaID)
+
+        if (tarea.usuario != ""){
+            throw BadRequestException("La tarea ya tiene un usuario asignado")
+        }
+
+        tarea.usuario = username
+        tarea.fecha_inicio = Date()
+
+        tareaRepository.save(tarea)
+        return tarea
+
+    }
+
+    fun completarTarea(username: String,tareaID: String):Tarea{
+
+        val tarea = getByID(tareaID)
+
+        if (tarea.usuario == ""){
+            throw BadRequestException("La tarea no esta asignada a un usuario")
+        }
+
+        tarea.estado = true
+        tarea.fecha_final = Date()
+
+        return tareaRepository.save(tarea)
+
+
+    }
+
+    fun eliminarTarea(tarea: Tarea) {
+        tareaRepository.delete(tarea)
+    }
 
 }

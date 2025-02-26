@@ -2,6 +2,7 @@ package com.tareapi.controller
 
 import com.tareapi.dto.InsertarTareaDTO
 import com.tareapi.dto.TareaDTO
+import com.tareapi.error.exception.UnauthorizedException
 import com.tareapi.model.Tarea
 import com.tareapi.model.Usuario
 import com.tareapi.service.TareaService
@@ -64,23 +65,37 @@ class TareaController {
         authentication: Authentication,
         @PathVariable username: String,
         @PathVariable tareaId: String,
-    ){
-
+    ): ResponseEntity<Tarea> {
+        return ResponseEntity(tareaService.darseDeAltaATarea(username,tareaId),HttpStatus.OK)
     }
 
     @PutMapping("/completarTarea/{tareaId}")
     fun completarTarea(
         authentication: Authentication,
         @PathVariable tareaId: String
-    ){
-
+    ): ResponseEntity<Tarea>{
+        return ResponseEntity( tareaService.completarTarea(authentication.name,tareaId),HttpStatus.OK)
     }
 
     @DeleteMapping("/eliminarTarea/{tareaId}")
     fun deleteTarea(
         authentication: Authentication,
         @PathVariable tareaId: String
-    ){
+    ): ResponseEntity<Tarea>{
+
+        val tarea = tareaService.getByID(tareaId)
+
+        if (authentication.authorities.any { it.authority == "ROLE_ADMIN" }){
+            tareaService.eliminarTarea(tarea)
+            return ResponseEntity(HttpStatus.OK)
+        }
+
+        if (tarea.usuario == authentication.name){
+            tareaService.eliminarTarea(tarea)
+            return ResponseEntity(HttpStatus.OK)
+        }
+
+        throw UnauthorizedException("El usuario no es administrador o no tiene la tarea asignada")
 
     }
 

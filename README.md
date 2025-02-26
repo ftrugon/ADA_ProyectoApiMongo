@@ -51,10 +51,10 @@
 ## c. Describe la lógica de negocio que va a contener tu aplicación.
 
 - ## Usuarios
-La contraseña se hashea antes de entrar a la base de datos
-No se puede crear un usuario con un username existente
-La contraseña no puede ser una cadena vacía, el nombre tampoco
-El usuario puede ser eliminado por sí mismo o por un administrador
+* La contraseña se hashea antes de entrar a la base de datos
+* No se puede crear un usuario con un username existente
+* La contraseña no puede ser una cadena vacía, el nombre tampoco
+* El usuario puede ser eliminado por sí mismo o por un administrador
 
 - ## Tareas
 * Una tarea solo puede ser asignada a un usuario
@@ -104,3 +104,11 @@ El usuario puede ser eliminado por sí mismo o por un administrador
 - videos demostrando el funcionamiento 
 - https://drive.google.com/file/d/1u-fG6bRFW7P0V1mL9h0HFCUSNWxk0N31/view?usp=sharing
 - https://drive.google.com/file/d/1Znc8UbSSNjrjdEDooLWrA_4seVOkr9OA/view?usp=sharing
+
+# PRUEBAS GESTION DE TAREAS
+
+* TOKEN DE ADMINISTRADOR: 
+* TOKEN DE USUARIO:
+
+- Insertar una tarea
+
