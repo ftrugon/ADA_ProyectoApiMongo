@@ -42,11 +42,15 @@
 - DELETE → /deleteUser/{username} → Eliminar usuario
 
 ## /tareas
-- GET → /getInfoTarea/{idTarea} → Obtiene la informacion de una tarea
 - POST → /crearTarea → Crea una tarea
-- PUT → /modTarea/{idTarea} → Modifica el titulo o el texto de una tarea
-- PUT → /completarTarea/{idTarea} → Completa como marcada una tarea
-- DELETE → /delTarea/{idTarea} → Elimina una tarea
+- GET → /obtenerTareas → Lista tus tareas asignadas
+- GET → /obtenerTareasSinAsignar → Lista las tareas que no se han asignado
+- GET → /obtenerTodasTareas → Lista todas las tareas de la base de datos, solo puede ser ejecutado por un administrador
+- PUT → /asignarTarea/{idTarea} → Asigna la tarea al usuario que ha entrado en el endpoint
+- PUT → /asignarTareaAUsuario/{username}/{tareaId} → Asigna una tarea a un usuario, solo puede ser ejecutado por un administrador
+- PUT → /completarTarea/{tareaId} → Completa una tarea asignada
+- PUT → /desmarcarTarea/{tareaId} → Desmarca una tarea asignada
+- DELETE → /eliminarTarea/{idTarea} → Elimina una tarea, solo puede hacerlo un admin o el propietario de la tarea
 
 ## c. Describe la lógica de negocio que va a contener tu aplicación.
 
@@ -107,8 +111,145 @@
 
 # PRUEBAS GESTION DE TAREAS
 
-* TOKEN DE ADMINISTRADOR: 
-* TOKEN DE USUARIO:
+* ### TOKEN DE ADMINISTRADOR: 
+* eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoiZnJhbiIsImV4cCI6MTc0MDU4OTMwMSwiaWF0IjoxNzQwNTg1NzAxLCJyb2xlcyI6IlJPTEVfQURNSU4ifQ.eHrGxsBl4iHD57D5alsug5E324_wwIBF8k2X4pDcUNWYooBm7FQMY1lvcJcbIm5ihhyCurZ9cM78qtWKu1NORRe_PcFTsETqbYJm4ksSudoUYAWxk3KRRS9AKyhKYxZO63AyMlg0MbudAdiKsd8EOaHG3_oZI9oV_feOto7xJrQlTzNDG-vhP24fGO5BaRfCtzJkskO_0pqe1ctLDs2jSXm60kzXanKJciDPjGJHqcPlCvN8IAzq7iGFb8iQ4X64tEanvKwkJVFcUyjl9zZlDlFad4Jqg6aBudmWlXVpRHpDss_BT4mrHMJKPlepEq-HZApMpakl0b7FYy_FQwrizw
+### TOKEN DE USUARIO:
+eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoiZnJhbmNlc2MiLCJleHAiOjE3NDA1ODkzMjgsImlhdCI6MTc0MDU4NTcyOCwicm9sZXMiOiJST0xFX1VTRVIifQ.STC0RGynn35XfDVAB_OL0AIiodQw-VbBWQfpTYDYvm1n3dLg0GjUYaMB2v6Hs7sYUu8gS9uztUj7tb13eS47f-w1NstS1aQxUuw86H8IOlbirLPh0NB3SnJnpAxy-SgHeqwINcgqUlO2unYIaVupMqXKGaeKrbZDzy3kAPLYegKQBuYHcuyHbf6kWsDifkKK6o_0dC2mMdoOUTMDuM_ANt58tQTP88HyYSj71i8-oYLVuK80wsmWVchm5ZcYL6ycAp4T12qzRfCvYMqcZOBqqgsicEmp6FjZZOL5V-dndJZkT-gbc57Od-o5iSPL5jDuj4N6ps1h0VgQFnuSjD8XLQ
 
-- Insertar una tarea
+- ## Insertar una tarea
+- Necesitas un jwt para que funcione, y los campos de la tarea no pueden estar vacios
 
+* Caso correcto 
+![img.png](src/main/resources/capturasDeFuncionamientoTareas/img.png)
+
+* No hay autorizacion
+![img_1.png](src/main/resources/capturasDeFuncionamientoTareas/img_1.png)
+
+* El json esta mal
+![img_2.png](src/main/resources/capturasDeFuncionamientoTareas/img_2.png)
+![img_3.png](src/main/resources/capturasDeFuncionamientoTareas/img_3.png)
+
+- ## Obtener tus tareas asignadas
+- Necesitas un jwt, si no tienes tareas asignadas te devuelve una lista vacia, para asignarte a una tarea es otro endpoint
+
+* Caso correcto
+![img_4.png](src/main/resources/capturasDeFuncionamientoTareas/img_4.png)
+![img_5.png](src/main/resources/capturasDeFuncionamientoTareas/img_5.png)
+
+* No hay autorizacion
+![img_6.png](src/main/resources/capturasDeFuncionamientoTareas/img_6.png)
+
+- ## Obtener las tareas que no se han asignado
+- Necesitas un jwt, si no hay tareas devuelve una lista vacia
+
+* Caso correcto
+![img_9.png](src/main/resources/capturasDeFuncionamientoTareas/img_9.png)
+
+* No hay autorizacion 
+![img_7.png](src/main/resources/capturasDeFuncionamientoTareas/img_7.png)
+
+- ## Obtener todas las tareas
+- Necesitas un jwt y ser administrador
+
+* Caso correcto
+![img_11.png](src/main/resources/capturasDeFuncionamientoTareas/img_11.png)
+
+* No hay autorizacion
+![img_10.png](src/main/resources/capturasDeFuncionamientoTareas/img_10.png)
+
+* No eres admin
+![img_12.png](src/main/resources/capturasDeFuncionamientoTareas/img_12.png)
+
+- ## Asignarse una tarea
+- Necesitas un jwt, la tarea no puede se puede asignar si ya esta asignada y que la tarea exista
+
+* Caso correcto
+![img_13.png](src/main/resources/capturasDeFuncionamientoTareas/img_13.png)
+
+* No hay autorizacion
+![img_15.png](src/main/resources/capturasDeFuncionamientoTareas/img_15.png)
+
+* La tarea ya estaba asignada
+![img_14.png](src/main/resources/capturasDeFuncionamientoTareas/img_14.png)
+
+* La tarea no existe
+![img_20.png](src/main/resources/capturasDeFuncionamientoTareas/img_20.png)
+
+- ## Asignar tarea a un usuario
+- Necesitas un jwt, ser admin, que la tarea no tenga a nadie asignado y que la tarea y el usuario existan
+
+* Caso correcto
+![img_18.png](src/main/resources/capturasDeFuncionamientoTareas/img_18.png)
+
+* No hay autorizacion
+![img_16.png](src/main/resources/capturasDeFuncionamientoTareas/img_16.png)
+
+* No eres admin
+![img_17.png](src/main/resources/capturasDeFuncionamientoTareas/img_17.png)
+
+* La tarea ya estaba asignada
+![img_19.png](src/main/resources/capturasDeFuncionamientoTareas/img_19.png)
+
+* La tarea no existe
+![img_21.png](src/main/resources/capturasDeFuncionamientoTareas/img_21.png)
+
+* El usuario no existe
+![img_22.png](src/main/resources/capturasDeFuncionamientoTareas/img_22.png)
+
+
+- ## Completar una tarea
+- Necesitas un jwt, la tarea tiene que estar asignada al que realiza la peticion, la tarea tiene que estar por acabar y que la tarea exista
+
+* Caso correcto
+![img_23.png](src/main/resources/capturasDeFuncionamientoTareas/img_23.png)
+
+* No hay autorizacion
+![img_24.png](src/main/resources/capturasDeFuncionamientoTareas/img_24.png)
+
+* No tienes la tarea asignada
+![img_25.png](src/main/resources/capturasDeFuncionamientoTareas/img_25.png)
+
+* No existe la tarea
+![img_26.png](src/main/resources/capturasDeFuncionamientoTareas/img_26.png)
+
+* La tarea esta asignada a otro usuario
+![img_27.png](src/main/resources/capturasDeFuncionamientoTareas/img_27.png)
+
+* La tarea ya esta acabada
+![img_28.png](src/main/resources/capturasDeFuncionamientoTareas/img_28.png)
+
+- ## Desmarcar una tarea
+- Necesitas un jwt, la tarea tiene que estar asignada al que realiza la peticion, la tarea tiene que estar acabada y que la tarea exista
+
+* Caso correcto
+![img_29.png](src/main/resources/capturasDeFuncionamientoTareas/img_29.png)
+
+* No hay autorizacion
+![img_30.png](src/main/resources/capturasDeFuncionamientoTareas/img_30.png)
+
+* No tienes la tarea asignada
+![img_31.png](src/main/resources/capturasDeFuncionamientoTareas/img_31.png)
+
+* La tarea no existe
+![img_34.png](src/main/resources/capturasDeFuncionamientoTareas/img_34.png)
+
+* La tarea esta asignada a otro usuario
+![img_32.png](src/main/resources/capturasDeFuncionamientoTareas/img_32.png)
+
+* La tarea no estaba acabada 
+![img_33.png](src/main/resources/capturasDeFuncionamientoTareas/img_33.png)
+
+- ## Eliminar una tarea
+- Necesitas un jwt y ser admin o el que tiene la tarea asignada
+
+* Caso correcto
+![img_35.png](src/main/resources/capturasDeFuncionamientoTareas/img_35.png)
+
+* No hay autorizacion
+![img_37.png](src/main/resources/capturasDeFuncionamientoTareas/img_37.png)
+
+* No existe la tarea
+![img_36.png](src/main/resources/capturasDeFuncionamientoTareas/img_36.png)
+
+* No eres el que tiene la tarea asignada
+![img_38.png](src/main/resources/capturasDeFuncionamientoTareas/img_38.png)

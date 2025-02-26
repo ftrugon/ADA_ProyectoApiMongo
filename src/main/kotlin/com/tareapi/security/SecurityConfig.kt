@@ -47,6 +47,7 @@ class SecurityConfig {
                 .requestMatchers("/tareas/asignarTarea/**").authenticated()
                 .requestMatchers(HttpMethod.PUT,"/tareas/asignarTareaAUsuario/**").hasRole("ADMIN")
                 .requestMatchers("/tareas/completarTarea/**").authenticated()
+                .requestMatchers("/tareas/desmarcarTarea/**").authenticated()
                 .requestMatchers("/tareas/eliminarTarea/**").authenticated()
 
             } // Los recursos protegidos y publicos

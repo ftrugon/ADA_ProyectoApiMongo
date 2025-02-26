@@ -77,6 +77,15 @@ class TareaController {
         return ResponseEntity( tareaService.completarTarea(authentication.name,tareaId),HttpStatus.OK)
     }
 
+
+    @PutMapping("/desmarcarTarea/{tareaId}")
+    fun desmarcarTarea(
+        authentication: Authentication,
+        @PathVariable tareaId: String
+    ): ResponseEntity<Tarea>{
+        return ResponseEntity( tareaService.desmarcarTarea(authentication.name,tareaId),HttpStatus.OK)
+    }
+
     @DeleteMapping("/eliminarTarea/{tareaId}")
     fun deleteTarea(
         authentication: Authentication,

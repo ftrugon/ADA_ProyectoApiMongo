@@ -85,11 +85,42 @@ class TareaService {
             throw BadRequestException("La tarea no esta asignada a un usuario")
         }
 
+        if (tarea.usuario != username){
+            throw BadRequestException("No puedes completar una tarea que no esta asignada a ti")
+        }
+
+        if (tarea.estado){
+            throw BadRequestException("La tarea que intentas completar ya se ha completado antes")
+        }
+
+
+
         tarea.estado = true
         tarea.fecha_final = Date()
 
         return tareaRepository.save(tarea)
 
+    }
+
+    fun desmarcarTarea(username: String,tareaID: String): Tarea {
+        val tarea = getByID(tareaID)
+
+        if (tarea.usuario == ""){
+            throw BadRequestException("La tarea no esta asignada a un usuario")
+        }
+
+        if (tarea.usuario != username){
+            throw BadRequestException("No puedes desmarcar una tarea que no esta asignada a ti")
+        }
+
+        if (!tarea.estado){
+            throw BadRequestException("La tarea que intentas desmarcar ya se ha desmarcado antes")
+        }
+
+        tarea.estado = false
+        tarea.fecha_final = null
+
+        return tareaRepository.save(tarea)
 
     }
 
