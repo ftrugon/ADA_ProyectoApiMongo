@@ -77,6 +77,22 @@ class TareaService {
 
     }
 
+    fun modTarea(tareaDTO: InsertarTareaDTO, tarea: Tarea):Tarea {
+        if (tareaDTO.titulo.isBlank()){
+            throw BadRequestException("El titulo de la tarea no puede estar vacio")
+        }
+
+        if (tareaDTO.texto.isBlank()){
+            throw BadRequestException("El cuerpo de la tarea no puede estar vacio")
+        }
+
+
+        tarea.titulo = tareaDTO.titulo
+        tarea.texto = tareaDTO.texto
+
+        return tareaRepository.save(tarea)
+    }
+
     fun completarTarea(username: String,tareaID: String):Tarea{
 
         val tarea = getByID(tareaID)

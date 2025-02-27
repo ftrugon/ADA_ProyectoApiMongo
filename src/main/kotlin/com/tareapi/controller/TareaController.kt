@@ -4,7 +4,6 @@ import com.tareapi.dto.InsertarTareaDTO
 import com.tareapi.dto.TareaDTO
 import com.tareapi.error.exception.UnauthorizedException
 import com.tareapi.model.Tarea
-import com.tareapi.model.Usuario
 import com.tareapi.service.TareaService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
@@ -69,6 +68,28 @@ class TareaController {
         return ResponseEntity(tareaService.darseDeAltaATarea(username,tareaId),HttpStatus.OK)
     }
 
+
+    @PutMapping("/modTarea/{tareaId}")
+    fun modTarea(
+        authentication: Authentication,
+        @PathVariable tareaId: String,
+        @RequestBody tareaDTO: InsertarTareaDTO
+    ): ResponseEntity<Tarea> {
+        val tarea = tareaService.getByID(tareaId)
+
+        if (authentication.authorities.any { it.authority == "ROLE_ADMIN" }){
+            return ResponseEntity(tareaService.modTarea(tareaDTO,tarea),HttpStatus.OK)
+        }
+
+        if (tarea.usuario == authentication.name){
+            return ResponseEntity(tareaService.modTarea(tareaDTO,tarea),HttpStatus.OK)
+        }
+
+        throw UnauthorizedException("El usuario no es administrador o no tiene la tarea asignada")
+
+    }
+
+
     @PutMapping("/completarTarea/{tareaId}")
     fun completarTarea(
         authentication: Authentication,
@@ -107,7 +128,5 @@ class TareaController {
         throw UnauthorizedException("El usuario no es administrador o no tiene la tarea asignada")
 
     }
-
-
 
 }

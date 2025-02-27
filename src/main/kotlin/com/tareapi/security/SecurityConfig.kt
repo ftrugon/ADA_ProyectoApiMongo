@@ -46,6 +46,7 @@ class SecurityConfig {
                 .requestMatchers(HttpMethod.GET ,"/tareas/obtenerTodasTareas").hasRole("ADMIN")
                 .requestMatchers("/tareas/asignarTarea/**").authenticated()
                 .requestMatchers(HttpMethod.PUT,"/tareas/asignarTareaAUsuario/**").hasRole("ADMIN")
+                .requestMatchers("/tareas/modTarea/**").authenticated()
                 .requestMatchers("/tareas/completarTarea/**").authenticated()
                 .requestMatchers("/tareas/desmarcarTarea/**").authenticated()
                 .requestMatchers("/tareas/eliminarTarea/**").authenticated()

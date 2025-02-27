@@ -196,6 +196,23 @@ eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoiZnJhbmNlc2MiLCJleHAiOjE3NDA1ODk
 * El usuario no existe
 ![img_22.png](src/main/resources/capturasDeFuncionamientoTareas/img_22.png)
 
+- ## Modificar el titulo o texto de una tarea
+- Necesitas un jwt, ser admin o el que tiene la tarea asignada, el json de la tarea tiene que ser correcto(titulo y texto no pueden estar vacios), la tarea tiene que estar asignada y la tarea tiene que existir
+
+* Caso correcto
+![img.png](src/main/resources/capturasDeFuncionamientoTareas/img_39.png)
+
+* No hay autorizacion
+![img_1.png](src/main/resources/capturasDeFuncionamientoTareas/img_40.png)
+
+* No eres el que tiene la tarea asignada
+![img_2.png](src/main/resources/capturasDeFuncionamientoTareas/img_41.png)
+
+* Json mal
+![img_3.png](src/main/resources/capturasDeFuncionamientoTareas/img_42.png)
+
+* La tarea no existe
+![img_4.png](src/main/resources/capturasDeFuncionamientoTareas/img_43.png)
 
 - ## Completar una tarea
 - Necesitas un jwt, la tarea tiene que estar asignada al que realiza la peticion, la tarea tiene que estar por acabar y que la tarea exista
