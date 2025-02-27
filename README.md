@@ -48,6 +48,7 @@
 - GET → /obtenerTodasTareas → Lista todas las tareas de la base de datos, solo puede ser ejecutado por un administrador
 - PUT → /asignarTarea/{idTarea} → Asigna la tarea al usuario que ha entrado en el endpoint
 - PUT → /asignarTareaAUsuario/{username}/{tareaId} → Asigna una tarea a un usuario, solo puede ser ejecutado por un administrador
+- PUT → /modTarea/{tareaId} → Modifica la tarea, el texto o el titulo
 - PUT → /completarTarea/{tareaId} → Completa una tarea asignada
 - PUT → /desmarcarTarea/{tareaId} → Desmarca una tarea asignada
 - DELETE → /eliminarTarea/{idTarea} → Elimina una tarea, solo puede hacerlo un admin o el propietario de la tarea
