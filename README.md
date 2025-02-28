@@ -37,9 +37,6 @@
 ### /users
 - POST → /login → Autenticar un usuario y generar un token JWT.
 - POST → /register → Registra un nuevo usuario si no esta en la base de datos
-- GET → /getInfo → Obtiene la información del usuario y tareas del usuario
-- PUT → /asignarTarea/{idTarea} → Retirar dinero
-- DELETE → /deleteUser/{username} → Eliminar usuario
 
 ## /tareas
 - POST → /crearTarea → Crea una tarea
