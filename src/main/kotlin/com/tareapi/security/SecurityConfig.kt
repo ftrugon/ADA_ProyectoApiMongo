@@ -39,6 +39,7 @@ class SecurityConfig {
             .authorizeHttpRequests { auth -> auth
                 .requestMatchers("/users/login").permitAll()
                 .requestMatchers("/users/register").permitAll()
+                .requestMatchers("/users/getInfo").authenticated()
 
                 .requestMatchers("/tareas/crearTarea").authenticated()
                 .requestMatchers("/tareas/obtenerTareas").authenticated()
@@ -90,8 +91,5 @@ class SecurityConfig {
     fun jwtDecoder(): JwtDecoder {
         return NimbusJwtDecoder.withPublicKey(rsaKeys.publicKey).build()
     }
-
-
-
 
 }

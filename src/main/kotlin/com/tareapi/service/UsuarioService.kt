@@ -44,6 +44,13 @@ class UsuarioService: UserDetailsService {
             .build()
     }
 
+    fun getInfo(username: String): Usuario{
+        val tal = usuarioRepository.findByUsername(username)
+        if (tal.isPresent){
+            return tal.get()
+        }else throw BadRequestException("La autorizacion no es valida")
+    }
+
     fun insertUser(registrarUsuarioDTO: RegistrarUsuarioDTO):UsuarioDTO{
 
         // COMPROBACIONES

@@ -37,6 +37,7 @@
 ### /users
 - POST → /login → Autenticar un usuario y generar un token JWT.
 - POST → /register → Registra un nuevo usuario si no esta en la base de datos
+- GET → /getInfo → Obtiene toda la informacion de un usuario, sin pasarlo por un dto
 
 ## /tareas
 - POST → /crearTarea → Crea una tarea

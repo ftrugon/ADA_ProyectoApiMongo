@@ -42,6 +42,15 @@ class UsuarioController {
 
     }
 
+
+    @GetMapping("/getInfo")
+    fun getInfo(
+        authentication: Authentication,
+    ): ResponseEntity<Usuario>{
+        return ResponseEntity(usuarioService.getInfo(authentication.name),HttpStatus.OK)
+    }
+
+
     @PostMapping("/login")
     fun login(
         @RequestBody usuarioLoginDTO: UsuarioLoginDTO
