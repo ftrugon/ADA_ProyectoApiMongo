@@ -291,3 +291,6 @@
 
 * No eres el que tiene la tarea asignada
 ![img_38.png](src/main/resources/capturasDeFuncionamientoTareas/img_38.png)
+
+# FUNCIONAMIENTO DE LA INTERFAZ GRAFICA
+* https://drive.google.com/file/d/1TTjsL4PGNh62h9qsk5H8ae1lAs3CoDaZ/view?usp=sharing
