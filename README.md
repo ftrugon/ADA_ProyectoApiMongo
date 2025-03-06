@@ -85,35 +85,57 @@
 - En cada endpoint que se ha creado se valida la información
 
 # PRUEBAS GESTION DE USUARIOS
+* Todas estas pruebas están consultando a render y no a localhost, asi que render funciona
+* Las pruebas que hice en la interfaz grafica no estan borradas, estan comentadas en el readme
+
 
 - Iniciar sesion con un usuario existente
+![img.png](src/main/resources/capturasDeFuncionamiento/deInsonmnia/img.png)
+<!--
 ![img_1.png](src/main/resources/capturasDeFuncionamiento/img_1.png)
 ![img.png](src/main/resources/capturasDeFuncionamiento/img.png)
 ![img_2.png](src/main/resources/capturasDeFuncionamiento/img_2.png)
+-->
 - Iniciar sesion con credenciales incorrectas
+![img_1.png](src/main/resources/capturasDeFuncionamiento/deInsonmnia/img_1.png)
+<!--
 ![img_4.png](src/main/resources/capturasDeFuncionamiento/img_4.png)
 ![img_3.png](src/main/resources/capturasDeFuncionamiento/img_3.png)
+-->
 - Registrarse correctamente
+![img_2.png](src/main/resources/capturasDeFuncionamiento/deInsonmnia/img_2.png)
+![img_3.png](src/main/resources/capturasDeFuncionamiento/deInsonmnia/img_3.png)
+<!--
 ![img_6.png](src/main/resources/capturasDeFuncionamiento/img_6.png)
 ![img_5.png](src/main/resources/capturasDeFuncionamiento/img_5.png)
 ![img_7.png](src/main/resources/capturasDeFuncionamiento/img_7.png)
 ![img_8.png](src/main/resources/capturasDeFuncionamiento/img_8.png)
+-->
 - Registro incorrecto
+
+![img_4.png](src/main/resources/capturasDeFuncionamiento/deInsonmnia/img_4.png)
+![img_5.png](src/main/resources/capturasDeFuncionamiento/deInsonmnia/img_5.png)
+![img_6.png](src/main/resources/capturasDeFuncionamiento/deInsonmnia/img_6.png)
+![img_7.png](src/main/resources/capturasDeFuncionamiento/deInsonmnia/img_7.png)
+
+<!--
 ![img_10.png](src/main/resources/capturasDeFuncionamiento/img_10.png)
 ![img_11.png](src/main/resources/capturasDeFuncionamiento/img_11.png)
 ![img_9.png](src/main/resources/capturasDeFuncionamiento/img_9.png)
+-->
 
-
-- videos demostrando el funcionamiento 
+<!--
+- videos demostrando el funcionamiento de la interfaz grafica, login y registro
 - https://drive.google.com/file/d/1u-fG6bRFW7P0V1mL9h0HFCUSNWxk0N31/view?usp=sharing
 - https://drive.google.com/file/d/1Znc8UbSSNjrjdEDooLWrA_4seVOkr9OA/view?usp=sharing
+-->
 
 # PRUEBAS GESTION DE TAREAS
 
 * ### TOKEN DE ADMINISTRADOR: 
 * eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoiZnJhbiIsImV4cCI6MTc0MDU4OTMwMSwiaWF0IjoxNzQwNTg1NzAxLCJyb2xlcyI6IlJPTEVfQURNSU4ifQ.eHrGxsBl4iHD57D5alsug5E324_wwIBF8k2X4pDcUNWYooBm7FQMY1lvcJcbIm5ihhyCurZ9cM78qtWKu1NORRe_PcFTsETqbYJm4ksSudoUYAWxk3KRRS9AKyhKYxZO63AyMlg0MbudAdiKsd8EOaHG3_oZI9oV_feOto7xJrQlTzNDG-vhP24fGO5BaRfCtzJkskO_0pqe1ctLDs2jSXm60kzXanKJciDPjGJHqcPlCvN8IAzq7iGFb8iQ4X64tEanvKwkJVFcUyjl9zZlDlFad4Jqg6aBudmWlXVpRHpDss_BT4mrHMJKPlepEq-HZApMpakl0b7FYy_FQwrizw
 ### TOKEN DE USUARIO:
-eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoiZnJhbmNlc2MiLCJleHAiOjE3NDA1ODkzMjgsImlhdCI6MTc0MDU4NTcyOCwicm9sZXMiOiJST0xFX1VTRVIifQ.STC0RGynn35XfDVAB_OL0AIiodQw-VbBWQfpTYDYvm1n3dLg0GjUYaMB2v6Hs7sYUu8gS9uztUj7tb13eS47f-w1NstS1aQxUuw86H8IOlbirLPh0NB3SnJnpAxy-SgHeqwINcgqUlO2unYIaVupMqXKGaeKrbZDzy3kAPLYegKQBuYHcuyHbf6kWsDifkKK6o_0dC2mMdoOUTMDuM_ANt58tQTP88HyYSj71i8-oYLVuK80wsmWVchm5ZcYL6ycAp4T12qzRfCvYMqcZOBqqgsicEmp6FjZZOL5V-dndJZkT-gbc57Od-o5iSPL5jDuj4N6ps1h0VgQFnuSjD8XLQ
+* eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoiZnJhbmNlc2MiLCJleHAiOjE3NDA1ODkzMjgsImlhdCI6MTc0MDU4NTcyOCwicm9sZXMiOiJST0xFX1VTRVIifQ.STC0RGynn35XfDVAB_OL0AIiodQw-VbBWQfpTYDYvm1n3dLg0GjUYaMB2v6Hs7sYUu8gS9uztUj7tb13eS47f-w1NstS1aQxUuw86H8IOlbirLPh0NB3SnJnpAxy-SgHeqwINcgqUlO2unYIaVupMqXKGaeKrbZDzy3kAPLYegKQBuYHcuyHbf6kWsDifkKK6o_0dC2mMdoOUTMDuM_ANt58tQTP88HyYSj71i8-oYLVuK80wsmWVchm5ZcYL6ycAp4T12qzRfCvYMqcZOBqqgsicEmp6FjZZOL5V-dndJZkT-gbc57Od-o5iSPL5jDuj4N6ps1h0VgQFnuSjD8XLQ
 
 - ## Insertar una tarea
 - Necesitas un jwt para que funcione, y los campos de la tarea no pueden estar vacios
